@@ -13,13 +13,13 @@
 #ifndef  _IDEAL_BASE_TIMEZONE_H
 #define  _IDEAL_BASE_TIMEZONE_H
 
-#include "ideal/base/copyable.h"
+#include "ideal/base/Copyable.h"
 #include <memory>
 #include <time.h>
 
 namespace ideal {
 
-class TimeZone : public copyable {
+class TimeZone : public Copyable {
 public:
     explicit TimeZone(const char* zonefile);
     TimeZone(int eastOfUtc, const char* tzname);

@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_INETADDRESS_H
 #define  _IDEAL_NET_INETADDRESS_H
 
-#include "ideal/base/copyable.h"
+#include "ideal/base/Copyable.h"
 #include "ideal/base/StringPiece.h"
 
 #include <netinet/in.h>
@@ -26,7 +26,7 @@ namespace sockets {
     const struct sockaddr* sockaddr_cast(const struct sockaddr_in* addr);
 }
 
-class InetAddress : public ideal::copyable {
+class InetAddress : public ideal::Copyable {
 public:
     explicit InetAddress(uint16_t port = 0, bool loopbackOnly = false);
     InetAddress(StringArg ip, uint16_t port);

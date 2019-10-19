@@ -13,14 +13,14 @@
 #ifndef  _IDEAL_BASE_FILEUTIL_H
 #define  _IDEAL_BASE_FILEUTIL_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/StringPiece.h"
 
 namespace ideal {
 
 namespace FileUtil {
 
-class ReadSmallFile : public noncopyable {
+class ReadSmallFile : public NonCopyable {
 public:
     ReadSmallFile(StringArg filename);
     ~ReadSmallFile();
@@ -56,7 +56,7 @@ int readFile(StringArg filename,
 }
 
 
-class AppendFile : public noncopyable {
+class AppendFile : public NonCopyable {
 public:
     explicit AppendFile(StringArg filename);
     ~AppendFile();

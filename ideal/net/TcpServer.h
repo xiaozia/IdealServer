@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_TCPSERVER_H
 #define  _IDEAL_NET_TCPSERVER_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/net/TcpConnection.h"
 
 #include <atomic>
@@ -28,7 +28,7 @@ class Acceptor;
 class EventLoop;
 class EventLoopThreadPool;
 
-class TcpServer : public ideal::noncopyable {
+class TcpServer : public ideal::NonCopyable {
 public:
     using ThreadInitCallback = std::function<void(EventLoop*)>;
 

@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_POLLER_H
 #define  _IDEAL_NET_POLLER_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/Timestamp.h"
 
 #include <vector>
@@ -26,7 +26,7 @@ namespace net {
 class Channel;
 class EventLoop;
 
-class Poller : public ideal::noncopyable {
+class Poller : public ideal::NonCopyable {
 public:
     using ChannelList = std::vector<Channel*>;
 

@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_BASE_THREAD_H
 #define  _IDEAL_BASE_THREAD_H
 
-#include "noncopyable.h"
+#include "NonCopyable.h"
 #include "CountDownLatch.h"
 
 #include <string>
@@ -23,7 +23,7 @@
 namespace ideal {
 
 
-class Thread : public noncopyable {
+class Thread : public NonCopyable {
 public:
     using ThreadFunc = std::function<void()>;
 

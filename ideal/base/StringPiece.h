@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_BASE_STRINGPIECE_H
 #define  _IDEAL_BASE_STRINGPIECE_H
 
-#include "ideal/base/copyable.h"
+#include "ideal/base/Copyable.h"
 
 #include <string>
 #include <cstring>
@@ -117,7 +117,7 @@ private:
 };
 
 
-class StringArg : public copyable {
+class StringArg : public Copyable {
 public:
     StringArg(const char* str) :
         _str(str) {

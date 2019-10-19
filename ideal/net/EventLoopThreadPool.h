@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_EVENTLOOPTHREADPOOL_H
 #define  _IDEAL_NET_EVENTLOOPTHREADPOOL_H
 
-#include <ideal/base/noncopyable.h>
+#include <ideal/base/NonCopyable.h>
 
 #include <memory>
 #include <vector>
@@ -26,7 +26,7 @@ namespace net {
 class EventLoop;
 class EventLoopThread;
 
-class EventLoopThreadPool : public ideal::noncopyable {
+class EventLoopThreadPool : public ideal::NonCopyable {
 public:
     using ThreadInitCallback = std::function<void(EventLoop*)>;
 

@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_TCPCLIENT_H
 #define  _IDEAL_NET_TCPCLIENT_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/net/InetAddress.h"
 #include "ideal/net/Callbacks.h"
 
@@ -30,7 +30,7 @@ using ConnectorPtr = std::shared_ptr<Connector>;
 class TcpConnection;
 using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
 
-class TcpClient : public ideal::noncopyable {
+class TcpClient : public ideal::NonCopyable {
 public:
     TcpClient(EventLoop* loop, const InetAddress& serverAddr, const std::string& name);
     ~TcpClient();

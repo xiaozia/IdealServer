@@ -30,7 +30,7 @@ class EventLoop;
 class Timer;
 class TimerId;
 
-class TimerQueue : public ideal::noncopyable {
+class TimerQueue : public ideal::NonCopyable {
 public:
     explicit TimerQueue(EventLoop* loop);
     ~TimerQueue();

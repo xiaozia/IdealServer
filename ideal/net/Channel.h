@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_CHANNEL_H
 #define  _IDEAL_NET_CHANNEL_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/Timestamp.h"
 
 #include <functional>
@@ -25,7 +25,7 @@ namespace net {
 
 class EventLoop;
 
-class Channel : public ideal::noncopyable {
+class Channel : public ideal::NonCopyable {
 public:
     using EventCallback = std::function<void()>;
     using ReadEventCallback = std::function<void(Timestamp)>;

@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_ACCEPTOR_H
 #define  _IDEAL_NET_ACCEPTOR_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/net/Channel.h"
 #include "ideal/net/Socket.h"
 
@@ -24,7 +24,7 @@ namespace ideal {
 
 namespace net {
 
-class Acceptor : public ideal::noncopyable {
+class Acceptor : public ideal::NonCopyable {
 public:
     using NewConnectionCallback = std::function<void(int sockfd, const InetAddress&)>;
 

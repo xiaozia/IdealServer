@@ -13,12 +13,12 @@
 #ifndef  _IDEAL_BASE_DATE_H
 #define  _IDEAL_BASE_DATE_H
 
-#include "ideal/base/copyable.h"
+#include "ideal/base/Copyable.h"
 #include <string>
 
 namespace ideal {
     
-class Date : public copyable {
+class Date : public Copyable {
 public:
     struct YearMonthDay {
         int year;

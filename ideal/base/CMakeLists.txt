@@ -18,9 +18,10 @@ add_library(ideal_base ${BASE_SRCS})
 install(TARGETS ideal_base DESTINATION ${PROJECT_SOURCE_DIR}/lib)
 
 set(BASE_HEADERS
-    copyable.h
-    noncopyable.h
+    Copyable.h
+    NonCopyable.h
 	Timestamp.h
+    RingBuffer.h
     BlockingQueue.h 
     BoundedBlockingQueue.h
     CountDownLatch.h

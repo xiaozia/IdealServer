@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_SOCKET_H
 #define  _IDEAL_NET_SOCKET_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 
 struct tcp_info;
 
@@ -23,7 +23,7 @@ namespace net {
 
 class InetAddress;
 
-class Socket : public ideal::noncopyable {
+class Socket : public ideal::NonCopyable {
 public:
     explicit Socket(int sockfd) :
         _sockfd(sockfd) {

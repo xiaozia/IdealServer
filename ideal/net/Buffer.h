@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_BUFFER_H
 #define  _IDEAL_NET_BUFFER_H
 
-#include "ideal/base/copyable.h"
+#include "ideal/base/Copyable.h"
 #include "ideal/base/StringPiece.h"
 #include "ideal/net/Endian.h"
 
@@ -37,7 +37,7 @@ namespace net {
 /// |                   |                  |                  |
 /// 0      <=      readerIndex   <=   writerIndex    <=     size
 /// @endcode
-class Buffer : public copyable {
+class Buffer : public Copyable {
 public:
     static const size_t kCheapPrepend = 8;
     static const size_t kInitialSize = 1024;

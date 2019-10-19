@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_TCPCONNECTION_H
 #define  _IDEAL_NET_TCPCONNECTION_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/StringPiece.h"
 #include "ideal/net/Buffer.h"
 #include "ideal/net/InetAddress.h"
@@ -33,7 +33,7 @@ class Channel;
 class EventLoop;
 class Socket;
 
-class TcpConnection : public ideal::noncopyable,
+class TcpConnection : public ideal::NonCopyable,
                       public std::enable_shared_from_this<TcpConnection> {
 public:
     TcpConnection(EventLoop* loop, 

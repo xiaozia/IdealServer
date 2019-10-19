@@ -24,7 +24,7 @@ namespace net {
 
 class EventLoop;
 
-class EventLoopThread : public ideal::noncopyable {
+class EventLoopThread : public ideal::NonCopyable {
 public:
     using ThreadInitCallback = std::function<void(EventLoop*)>;
  

@@ -13,14 +13,14 @@
 #ifndef  _IDEAL_BASE_COUNTDOWNLATCH_H
 #define  _IDEAL_BASE_COUNTDOWNLATCH_H
 
-#include "noncopyable.h"
+#include "NonCopyable.h"
 
 #include <mutex>
 #include <condition_variable>
 
 namespace ideal {
 
-class CountDownLatch : public noncopyable {
+class CountDownLatch : public NonCopyable {
 public:
     explicit CountDownLatch(int count) :
         _mtx(),

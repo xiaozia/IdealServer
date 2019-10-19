@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_CONNECTOR_H
 #define  _IDEAL_NET_CONNECTOR_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/net/InetAddress.h"
 
 #include <functional>
@@ -26,7 +26,7 @@ namespace net {
 class EventLoop;
 class Channel;
 
-class Connector : public ideal::noncopyable {
+class Connector : public ideal::NonCopyable {
 public:
     using NewConnectionCallback = std::function<void(int sockfd)>;
 

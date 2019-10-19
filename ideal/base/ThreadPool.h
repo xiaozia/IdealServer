@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_BASE_THREADPOOL_H
 #define  _IDEAL_BASE_THREADPOOL_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/Thread.h"
 
 #include <string>
@@ -25,7 +25,7 @@
 
 namespace ideal {
 
-class ThreadPool : public noncopyable {
+class ThreadPool : public NonCopyable {
 public:
     using Task = std::function<void()>;
 

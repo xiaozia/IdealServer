@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : BoundedBlockingQueue.h
-*   Last Modified : 2019-05-25 10:34
+*   Last Modified : 2019-10-19 14:59
 *   Describe      :
 *
 *******************************************************/
@@ -13,8 +13,8 @@
 #ifndef  _IDEAL_BASE_BOUNDEDBLOCKINGQUEUE_H
 #define  _IDEAL_BASE_BOUNDEDBLOCKINGQUEUE_H
 
-#include "noncopyable.h"
-#include <boost/circular_buffer.hpp>
+#include "NonCopyable.h"
+#include "RingBuffer.h"
 
 #include <deque>
 #include <mutex>
@@ -24,7 +24,7 @@
 namespace ideal {
 
 template <class T>
-class BoundedBlockingQueue : public noncopyable {
+class BoundedBlockingQueue : public NonCopyable {
 public:
     BoundedBlockingQueue(int maxSize) :
         _mtx(),
@@ -55,7 +55,7 @@ public:
 
         T front(std::move(_queue.front()));
         _queue.pop_front();
-        _noEmpty.notify_all();
+        _noFull.notify_all();
         return std::move(front);
     }
 
@@ -70,11 +70,10 @@ public:
     }
 
 private:
-    std::mutex _mtx;
+    mutable std::mutex _mtx;
     std::condition_variable _noEmpty;
     std::condition_variable _noFull;
-    boost::circular_buffer<T> _queue;
-
+    RingBuffer<T> _queue;
 };
 
 }

@@ -5,15 +5,15 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Timestamp.h
-*   Last Modified : 2019-05-24 21:17
+*   Last Modified : 2019-10-19 14:58
 *   Describe      :
 *
 *******************************************************/
 
-#ifndef  _NET_TIMESTAMP_H
-#define  _NET_TIMESTAMP_H
+#ifndef  _IDEAL_BASE_TIMESTAMP_H
+#define  _IDEAL_BASE_TIMESTAMP_H
 
-#include "copyable.h"
+#include "Copyable.h"
 
 #include <stdint.h>
 #include <string>
@@ -21,7 +21,7 @@
 namespace ideal 
 {
 
-class Timestamp : public copyable {
+class Timestamp : public Copyable {
 public:
     Timestamp() :
         _microsecondsSinceEpoch(0) { 
@@ -82,6 +82,6 @@ inline bool operator==(Timestamp lhs, Timestamp rhs) {
 
 }
 
-#endif // _NET_TIMESTAMP_H
+#endif // _IDEAL_BASE_TIMESTAMP_H
 
 

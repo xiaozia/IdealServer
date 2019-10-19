@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_BASE_BLOCKINGQUEUE_H
 #define  _IDEAL_BASE_BLOCKINGQUEUE_H
 
-#include "noncopyable.h"
+#include "NonCopyable.h"
 
 #include <queue>
 #include <mutex>
@@ -22,7 +22,7 @@
 namespace ideal {
 
 template <class T>
-class BlockingQueue : public noncopyable {
+class BlockingQueue : public NonCopyable {
 public:
     BlockingQueue() :
         _mtx(),

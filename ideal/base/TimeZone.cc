@@ -10,7 +10,7 @@
 *
 *******************************************************/
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/TimeZone.h"
 #include "ideal/base/Date.h"
 
@@ -79,7 +79,7 @@ struct TimeZone::Data {
 };
 
 
-class File : public noncopyable {
+class File : public NonCopyable {
 public:
     File(const char* file) :
         _fp(::fopen(file, "rb")) {

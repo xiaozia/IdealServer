@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_BASE_LOGSTREAM_H
 #define  _IDEAL_BASE_LOGSTREAM_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/StringPiece.h"
 
 #include <string>
@@ -25,7 +25,7 @@ const int kSmallBuffer = 4000;
 const int kLargeBuffer = 4000*100;
 
 template <int SIZE>
-class FixedBuffer : public noncopyable {
+class FixedBuffer : public NonCopyable {
 public:
     FixedBuffer() :
         _cur(_data) {
@@ -61,7 +61,7 @@ private:
 };
 
 
-class LogStream : public noncopyable {
+class LogStream : public NonCopyable {
 public:
     using Buffer = FixedBuffer<kSmallBuffer>;
 

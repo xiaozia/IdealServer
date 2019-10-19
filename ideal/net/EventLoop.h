@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_EVENTLOOP_H
 #define  _IDEAL_NET_EVENTLOOP_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/Timestamp.h"
 #include "ideal/base/CurrentThread.h"
 #include "ideal/net/Callbacks.h"
@@ -32,7 +32,7 @@ class Channel;
 class Poller;
 class TimerQueue;
 
-class EventLoop : public ideal::noncopyable {
+class EventLoop : public ideal::NonCopyable {
 public:
     using Functor = std::function<void()>;
 

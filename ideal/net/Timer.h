@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_TIMER_H
 #define  _IDEAL_NET_TIMER_H
 
-#include "ideal/base/noncopyable.h"
+#include "ideal/base/NonCopyable.h"
 #include "ideal/base/Timestamp.h"
 #include "ideal/net/Callbacks.h"
 
@@ -24,7 +24,7 @@ namespace ideal {
 
 namespace net {
 
-class Timer : ideal::noncopyable {
+class Timer : ideal::NonCopyable {
 public:
     Timer(TimerCallback cb, Timestamp when, double interval) :
         _callback(std::move(cb)),

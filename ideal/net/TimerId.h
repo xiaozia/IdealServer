@@ -13,7 +13,7 @@
 #ifndef  _IDEAL_NET_TIMERID_H
 #define  _IDEAL_NET_TIMERID_H
 
-#include "ideal/base/copyable.h"
+#include "ideal/base/Copyable.h"
 
 namespace ideal {
 
@@ -21,7 +21,7 @@ namespace net {
 
 class Timer;
 
-class TimerId : public ideal::copyable {
+class TimerId : public ideal::Copyable {
 public:
     TimerId() :
         _timer(nullptr),
