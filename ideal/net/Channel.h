@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Channel.h
-*   Last Modified : 2019-06-10 20:48
+*   Last Modified : 2019-11-03 11:03
 *   Describe      :
 *
 *******************************************************/
@@ -50,7 +50,7 @@ public:
     void enableReading() { _events |= kReadEvent; update(); }
     void disableReading() { _events &= ~kReadEvent; update(); }
     void enableWriting() { _events |= kWriteEvent; update(); }
-    void disableWriting() { _events |= kWriteEvent; update(); }
+    void disableWriting() { _events &= ~kWriteEvent; update(); }
     void disableAll() { _events = kNoneEvent; update(); }
     bool isWriting() const { return _events & kWriteEvent; } // 正在写
     bool isReading() const { return _events & kReadEvent; }  // 正在读

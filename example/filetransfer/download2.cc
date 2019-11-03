@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : download2.cc
-*   Last Modified : 2019-07-12 17:17
+*   Last Modified : 2019-11-03 12:32
 *   Describe      :
 *
 *******************************************************/
@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
 
 using namespace ideal;
 using namespace ideal::net;
@@ -39,9 +40,16 @@ void onConnection(const TcpConnectionPtr& conn) {
     	FILE* fp = ::fopen(g_file, "rb");
     	if(fp) {
       		conn->setContext(fp);
-      		char buf[kBufSize];
-      		size_t nread = ::fread(buf, 1, sizeof buf, fp);
-      		conn->send(buf, static_cast<int>(nread));
+
+            // 文件名(255) + 文件大小(4) + 文件内容(文件大小)
+            fseek(fp, 0, SEEK_END);
+            int filesize = ftell(fp) / 1024;
+            fseek(fp, 0, SEEK_SET);
+            
+            char tmp[NAME_MAX + sizeof(int)];
+            strcpy(tmp, strrchr(g_file, '/')? strrchr(g_file, '/')+1 : g_file);
+            strcpy(tmp + NAME_MAX, (const char*)&filesize);
+            conn->send(tmp, NAME_MAX + sizeof(int));
     	}
     	else {
       		conn->shutdown();
