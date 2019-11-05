@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : EchoClient_test.cc
-*   Last Modified : 2019-07-12 14:37
+*   Last Modified : 2019-11-05 16:05
 *   Describe      :
 *
 *******************************************************/
@@ -14,11 +14,11 @@
 #include "ideal/net/TcpConnection.h"
 #include "ideal/base/Logger.h"
 #include "ideal/base/Thread.h"
+#include "ideal/base/Types.h"
 #include "ideal/net/EventLoop.h"
 #include "ideal/net/InetAddress.h"
 
 #include <utility>
-#include <boost/implicit_cast.hpp>
 
 #include <stdio.h>
 #include <unistd.h>
@@ -54,7 +54,7 @@ private:
 
     	if(conn->connected()) {
       		++current;
-      		if(boost::implicit_cast<size_t>(current) < clients.size()) {
+      		if(implicit_cast<size_t>(current) < clients.size()) {
         		clients[current]->connect();
       		}
       		LOG_INFO << "*** connected " << current;

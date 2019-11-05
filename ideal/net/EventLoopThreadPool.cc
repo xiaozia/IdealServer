@@ -5,16 +5,16 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : EventLoopThreadPool.cc
-*   Last Modified : 2019-07-05 13:06
+*   Last Modified : 2019-11-05 16:02
 *   Describe      :
 *
 *******************************************************/
 
 #include "ideal/net/EventLoopThreadPool.h"
+#include "ideal/base/Types.h"
 #include "ideal/net/EventLoop.h"
 #include "ideal/net/EventLoopThread.h"
 
-#include <boost/implicit_cast.hpp>
 #include <cassert>
 
 using namespace ideal;
@@ -57,7 +57,7 @@ EventLoop* EventLoopThreadPool::getNextLoop() {
     if(!_loops.empty()) {
         // round-robin
         loop = _loops[_next++];
-        if(boost::implicit_cast<size_t>(_next) == _loops.size()) {
+        if(implicit_cast<size_t>(_next) == _loops.size()) {
             _next = 0;
         }
     }

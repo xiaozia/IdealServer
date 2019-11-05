@@ -5,15 +5,15 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Buffer.cc
-*   Last Modified : 2019-07-09 15:50
+*   Last Modified : 2019-11-05 16:01
 *   Describe      :
 *
 *******************************************************/
 
 #include "ideal/net/Buffer.h"
 #include "ideal/net/SocketUtil.h"
+#include "ideal/base/Types.h"
 
-#include <boost/implicit_cast.hpp>
 #include <errno.h>
 #include <sys/uio.h>
 
@@ -38,7 +38,7 @@ ssize_t Buffer::readFd(int fd, int* savedErrno) {
     if(n < 0) {
         *savedErrno = errno;
     }
-    else if(boost::implicit_cast<size_t>(n) <= writable) {
+    else if(implicit_cast<size_t>(n) <= writable) {
         _writerIndex += n;
     }
     else {

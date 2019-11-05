@@ -1,3 +1,6 @@
+add_executable(types_test Types_test.cc) 
+target_link_libraries(types_test ideal_base)
+
 add_executable(timestamp_test Timestamp_test.cc) 
 target_link_libraries(timestamp_test ideal_base)
 

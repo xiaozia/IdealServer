@@ -5,15 +5,14 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : FileUtil.cc
-*   Last Modified : 2019-06-07 10:31
+*   Last Modified : 2019-11-05 15:59
 *   Describe      :
 *
 *******************************************************/
 
 #include "ideal/base/FileUtil.h"
 #include "ideal/base/Logger.h"
-
-#include <boost/implicit_cast.hpp>
+#include "ideal/base/Types.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -56,7 +55,7 @@ int FileUtil::ReadSmallFile::readToString(int maxSize,
             if(::fstat(_fd, &statbuf) == 0) {
                 if(S_ISREG(statbuf.st_mode)) {
                     *fileSize = statbuf.st_size;
-                    content->reserve(static_cast<int>(std::min(boost::implicit_cast<int64_t>(maxSize), *fileSize)));
+                    content->reserve(static_cast<int>(std::min(implicit_cast<int64_t>(maxSize), *fileSize)));
                 }
                 else if(S_ISDIR(statbuf.st_mode)) {
                     err = EISDIR;
@@ -74,8 +73,8 @@ int FileUtil::ReadSmallFile::readToString(int maxSize,
             }
         }
 
-        while(content->size() < boost::implicit_cast<size_t>(maxSize)) {
-            size_t toRead = std::min(boost::implicit_cast<size_t>(maxSize) - content->size(), sizeof _buf);
+        while(content->size() <implicit_cast<size_t>(maxSize)) {
+            size_t toRead = std::min(implicit_cast<size_t>(maxSize) - content->size(), sizeof _buf);
             ssize_t n = ::read(_fd, _buf, toRead);
             if( n > 0) {
                 content->append(_buf, n);

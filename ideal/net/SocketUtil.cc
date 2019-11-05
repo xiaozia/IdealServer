@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : SocketUtil.cc
-*   Last Modified : 2019-05-26 17:07
+*   Last Modified : 2019-11-05 16:04
 *   Describe      :
 *
 *******************************************************/
@@ -13,8 +13,7 @@
 #include "ideal/net/SocketUtil.h"
 #include "ideal/base/Logger.h"
 #include "ideal/net/Endian.h"
-
-#include <boost/implicit_cast.hpp>
+#include "ideal/base/Types.h"
 
 #include <unistd.h>
 
@@ -24,15 +23,15 @@ namespace ideal {
 namespace net {
 
 const struct sockaddr_in* sockets::sockaddr_in_cast(const struct sockaddr* addr) {
-    return static_cast<const struct sockaddr_in*>(boost::implicit_cast<const void*>(addr));
+    return static_cast<const struct sockaddr_in*>(implicit_cast<const void*>(addr));
 }
 
 struct sockaddr* sockets::sockaddr_cast(struct sockaddr_in* addr) {
-    return static_cast<struct sockaddr*>(boost::implicit_cast<void*>(addr));
+    return static_cast<struct sockaddr*>(implicit_cast<void*>(addr));
 }
 
 const struct sockaddr* sockets::sockaddr_cast(const struct sockaddr_in* addr) {
-    return static_cast<const struct sockaddr*>(boost::implicit_cast<const void*>(addr));
+    return static_cast<const struct sockaddr*>(implicit_cast<const void*>(addr));
 }
 
 
