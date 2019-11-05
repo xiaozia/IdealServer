@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : InetAddress.cc
-*   Last Modified : 2019-06-03 19:52
+*   Last Modified : 2019-11-05 20:31
 *   Describe      :
 *
 *******************************************************/
@@ -67,6 +67,7 @@ uint16_t InetAddress::toPort() const {
 
 static __thread char t_resolveBuffer[64 * 1024];
 
+// DNS
 bool InetAddress::resolve(StringArg hostname, InetAddress* result) {
     assert(result != nullptr);
     struct hostent hent;
