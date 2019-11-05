@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Logger.cc
-*   Last Modified : 2019-06-03 22:02
+*   Last Modified : 2019-11-05 13:53
 *   Describe      :
 *
 *******************************************************/
@@ -28,7 +28,6 @@ const char* strerror_tl(int savedErrno) {
 }
 
 }
-
 
 
 using namespace ideal;
@@ -97,6 +96,8 @@ Logger::Impl::Impl(LogLevel level, int savedErrno, const SourceFile& file, int l
     if(savedErrno != 0) {  // 错误信息errno
         _stream << strerror_tl(savedErrno) << " (errno = " << savedErrno << ") ";
     }
+
+    _stream << _basename << ':' << _line << " - "; // 文件名 行
 }
 
 void Logger::Impl::formatTime() {
@@ -110,28 +111,27 @@ void Logger::Impl::formatTime() {
             tm_time = g_logTimeZone.toLocalTime(seconds);
         else
             ::gmtime_r(&seconds, &tm_time);
-    
-        int len = snprintf(t_time, sizeof(t_time), "%4d%02d%02d %02d:%02d:%02d", 
-                tm_time.tm_year+1900, tm_time.tm_mon+1, tm_time.tm_mday,
-                tm_time.tm_hour, tm_time.tm_min, tm_time.tm_sec);
-        assert(len == 17);
+  
+        // 格式化时间
+        size_t len = ::strftime(t_time, sizeof(t_time), "%F %H:%M:%S", &tm_time);
+        assert(len == 19);
         (void)len;
     }
 
     if(g_logTimeZone.valid()) {
         Fmt us(".%06d ", microseconds);
         assert(us.length() == 8);
-        _stream << T(t_time, 17) << T(us.data(), 8);
+        _stream << T(t_time, 19) << T(us.data(), 8);
     }
     else {
-        Fmt us(".%06dZ ", microseconds);
+        Fmt us(".%06dZ ", microseconds);  // 国际标准时间
         assert(us.length() == 9);
-        _stream << T(t_time, 17) << T(us.data(), 9);
+        _stream << T(t_time, 19) << T(us.data(), 9);
     }
 }
 
 void Logger::Impl::finish() {
-    _stream << " - " << _basename << ':' << _line << '\n'; // 文件名 行 换行
+    _stream << '\n';
 }
 
 Logger::Logger(SourceFile file, int line) :
