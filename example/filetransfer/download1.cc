@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : download1.cc
-*   Last Modified : 2019-11-03 12:32
+*   Last Modified : 2019-11-06 20:35
 *   Describe      :
 *
 *******************************************************/
@@ -35,12 +35,13 @@ std::string readFile(const char* filename) {
 
         // 文件名(255) + 文件大小(4) + 文件内容(文件大小)
         fseek(fp, 0, SEEK_END);
-        int filesize = ftell(fp) / 1024;
+        int filesize = ftell(fp);
         fseek(fp, 0, SEEK_SET);
             
         char tmp[NAME_MAX + sizeof(int)];
         strcpy(tmp, strrchr(g_file, '/')? strrchr(g_file, '/')+1 : g_file);
-        strcpy(tmp + NAME_MAX, (const char*)&filesize);
+        memcpy(tmp + NAME_MAX, &filesize, sizeof(int));  // memcpy
+
         content.append(tmp, NAME_MAX + sizeof(int));
 
         char buf[kBufSize];

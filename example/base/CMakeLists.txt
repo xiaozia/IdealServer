@@ -32,6 +32,9 @@ add_executable(logfile_test LogFile_test.cc)
 target_link_libraries(logfile_test ideal_base)
 
 if(GOOGLETEST_LIBRARY)
+    add_executable(any_test Any_test.cc) 
+    target_link_libraries(any_test gtest pthread)
+
     add_executable(logstream_test LogStream_test.cc) 
     target_link_libraries(logstream_test ideal_base gtest pthread)
 endif()

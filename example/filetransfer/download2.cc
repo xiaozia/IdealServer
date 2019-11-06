@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : download2.cc
-*   Last Modified : 2019-11-03 12:32
+*   Last Modified : 2019-11-06 20:36
 *   Describe      :
 *
 *******************************************************/
@@ -43,12 +43,14 @@ void onConnection(const TcpConnectionPtr& conn) {
 
             // 文件名(255) + 文件大小(4) + 文件内容(文件大小)
             fseek(fp, 0, SEEK_END);
-            int filesize = ftell(fp) / 1024;
+            int filesize = ftell(fp);
             fseek(fp, 0, SEEK_SET);
+            printf("%d\n", filesize);
             
             char tmp[NAME_MAX + sizeof(int)];
             strcpy(tmp, strrchr(g_file, '/')? strrchr(g_file, '/')+1 : g_file);
-            strcpy(tmp + NAME_MAX, (const char*)&filesize);
+            memcpy(tmp + NAME_MAX, &filesize, sizeof(int));    // memcpy
+            
             conn->send(tmp, NAME_MAX + sizeof(int));
     	}
     	else {
@@ -58,7 +60,7 @@ void onConnection(const TcpConnectionPtr& conn) {
   	}
   	else {
     	if(!conn->getContext().empty()) {
-      		FILE* fp = boost::any_cast<FILE*>(conn->getContext());
+      		FILE* fp = conn->getContext().any_cast<FILE*>();
       		if(fp) {
         		::fclose(fp);
       		}
@@ -68,7 +70,7 @@ void onConnection(const TcpConnectionPtr& conn) {
 
 void onWriteComplete(const TcpConnectionPtr& conn)
 {
-	FILE* fp = boost::any_cast<FILE*>(conn->getContext());
+	FILE* fp = conn->getContext().any_cast<FILE*>();
 	char buf[kBufSize];
   	
 	size_t nread = ::fread(buf, 1, sizeof buf, fp);

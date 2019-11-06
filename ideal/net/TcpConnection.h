@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpConnection.h
-*   Last Modified : 2019-07-06 14:39
+*   Last Modified : 2019-11-06 14:50
 *   Describe      :
 *
 *******************************************************/
@@ -15,13 +15,13 @@
 
 #include "ideal/base/NonCopyable.h"
 #include "ideal/base/StringPiece.h"
+#include "ideal/base/Any.h"
 #include "ideal/net/Buffer.h"
 #include "ideal/net/InetAddress.h"
 #include "ideal/net/Callbacks.h"
 
 #include <memory>
 #include <string>
-#include <boost/any.hpp>
 
 struct tcp_info;
 
@@ -65,9 +65,9 @@ public:
     void stopRead();
     bool isReading() const { return _reading; }
 
-    void setContext(const boost::any& context) { _context = context; }
-    const boost::any& getContext() const { return _context; }
-    boost::any* getMutableContext() { return &_context; }
+    void setContext(const Any& context) { _context = context; }
+    const Any& getContext() const { return _context; }
+    Any* getMutableContext() { return &_context; }
 
     void setConnectionCallback(const ConnectionCallback& cb) { _connectionCallback = cb; }
     void setMessageCallback(const MessageCallback& cb) { _messageCallback = cb; }
@@ -127,7 +127,7 @@ private:
     size_t _highWaterMark;
     Buffer _inputBuffer;
     Buffer _outputBuffer;
-    boost::any _context;
+    Any _context;
 };
 
 using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
