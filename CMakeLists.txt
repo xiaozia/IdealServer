@@ -30,5 +30,6 @@ if(BUILD_EXAMPLES)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/net)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/filetransfer)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/maxconnection)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/example/pingpong)
 endif()
 
