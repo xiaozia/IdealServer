@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpConnection.h
-*   Last Modified : 2019-11-06 14:50
+*   Last Modified : 2019-11-19 21:03
 *   Describe      :
 *
 *******************************************************/
@@ -129,8 +129,6 @@ private:
     Buffer _outputBuffer;
     Any _context;
 };
-
-using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
 
 }
 

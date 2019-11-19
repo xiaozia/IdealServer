@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpClient.h
-*   Last Modified : 2019-07-29 14:28
+*   Last Modified : 2019-11-19 21:03
 *   Describe      :
 *
 *******************************************************/
@@ -27,8 +27,6 @@ namespace net {
 class EventLoop;
 class Connector;
 using ConnectorPtr = std::shared_ptr<Connector>;
-class TcpConnection;
-using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
 
 class TcpClient : public ideal::NonCopyable {
 public:
