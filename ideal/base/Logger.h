@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Logger.h
-*   Last Modified : 2019-05-25 21:38
+*   Last Modified : 2019-11-22 20:50
 *   Describe      :
 *
 *******************************************************/
@@ -26,11 +26,20 @@ namespace ideal {
 class Fmt {
 public:
     template <class T>
-    Fmt(const char* fmt, T val);
+    Fmt(const char* fmt, T val) {
+        static_assert(std::is_arithmetic<T>::value == true, "Must be arithmetic type");
+        _len = snprintf(_buf, sizeof _buf, fmt, val);
+        assert(static_cast<size_t>(_len) < sizeof _buf);
+    }
 
     const char* data() const { return _buf; }
     int length() const { return _len; }
-    
+
+    friend LogStream& operator<<(LogStream& s, const Fmt& fmt) {
+        s.append(fmt.data(), fmt.length());
+        return s;
+    }
+
 private:
     char _buf[32];
     int _len;
@@ -42,6 +51,11 @@ public:
         _str(str),
         _len(len) {
         assert(strlen(str) == _len);
+    }
+    
+    friend LogStream& operator<<(LogStream& s, T v) {
+        s.append(v._str, v._len);
+        return s;
     }
 
     const char* _str;
@@ -75,7 +89,6 @@ public:
         	_size -= static_cast<int>(_data - arr);
       	}
 	}
-
     // 指针型别
     explicit SourceFile(const char* filename) :
         _data(filename) {
@@ -84,6 +97,11 @@ public:
             _data = slash + 1;
         }
         _size = static_cast<int>(strlen(_data));
+    }
+
+    friend LogStream& operator<<(LogStream& s, const Logger::SourceFile& v) {
+        s.append(v._data, v._size);
+        return s;
     }
 
 public:

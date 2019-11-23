@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Logger.cc
-*   Last Modified : 2019-11-05 13:53
+*   Last Modified : 2019-11-22 20:51
 *   Describe      :
 *
 *******************************************************/
@@ -31,23 +31,6 @@ const char* strerror_tl(int savedErrno) {
 
 
 using namespace ideal;
-
-template <class T>
-Fmt::Fmt(const char* fmt, T val) {
-    static_assert(std::is_arithmetic<T>::value == true, "Must be arithmetic type");
-    _len = snprintf(_buf, sizeof _buf, fmt, val);
-    assert(static_cast<size_t>(_len) < sizeof _buf);
-}
-
-LogStream& operator<<(LogStream& s, T v) {
-    s.append(v._str, v._len);
-    return s;
-}
-
-LogStream& operator<<(LogStream& s, const Logger::SourceFile& v) {
-    s.append(v._data, v._size);
-    return s;
-}
 
 const char* LogLevelName[Logger::LOG_LEVEL_NUM] = {
     "TRACE ",

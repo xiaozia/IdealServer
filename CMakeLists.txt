@@ -32,5 +32,6 @@ if(BUILD_EXAMPLES)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/maxconnection)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/pingpong)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/http)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/example/sudoku)
 endif()
 
