@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : CurrentThread.cc
-*   Last Modified : 2019-05-26 10:46
+*   Last Modified : 2019-11-23 14:16
 *   Describe      :
 *
 *******************************************************/
@@ -13,9 +13,8 @@
 #include "ideal/base/CurrentThread.h"
 #include "ideal/base/Timestamp.h"
 
-
 #include <type_traits>
-#include <cstdio>
+#include <stdio.h>
 #include <cxxabi.h>
 
 #include <unistd.h>

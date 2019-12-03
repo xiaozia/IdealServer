@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Channel.h
-*   Last Modified : 2019-11-03 11:03
+*   Last Modified : 2019-12-01 09:53
 *   Describe      :
 *
 *******************************************************/
@@ -20,7 +20,6 @@
 #include <memory>
 
 namespace ideal {
-
 namespace net {
 
 class EventLoop;
@@ -96,7 +95,6 @@ private:
 };
 
 }
-
 }
 
 #endif // _IDEAL_NET_CHANNEL_H

@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpConnection.h
-*   Last Modified : 2019-11-19 21:03
+*   Last Modified : 2019-12-01 10:27
 *   Describe      :
 *
 *******************************************************/
@@ -26,7 +26,6 @@
 struct tcp_info;
 
 namespace ideal {
-
 namespace net {
 
 class Channel;
@@ -44,6 +43,8 @@ public:
     ~TcpConnection();
 
     EventLoop* getLoop() const { return _loop; }
+    // RtpConnection use
+    int getFd() const;
     const std::string name() const { return _name; }
     const InetAddress& localAddress() const { return _localAddr; }
     const InetAddress& peerAddress() const { return _peerAddr; }
@@ -129,7 +130,6 @@ private:
     Buffer _outputBuffer;
     Any _context;
 };
-
 }
 
 }

@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpServer.h
-*   Last Modified : 2019-11-07 20:07
+*   Last Modified : 2019-11-25 14:54
 *   Describe      :
 *
 *******************************************************/
@@ -41,7 +41,7 @@ public:
               const InetAddress& listenAddr,
               const std::string& name,
               Option option = kNoReusePort);
-    virtual ~TcpServer();
+    ~TcpServer();
 
     const std::string ipPort() const { return _ipPort; }
     const std::string& name() const { return _name; }
@@ -57,9 +57,9 @@ public:
     void setWriteCompleteCallback(const WriteCompleteCallback& cb) { _writeCompleteCallback = cb; }
 
 private:
-    virtual void newConnection(int sockfd, const InetAddress& peerAddr);
-    virtual void removeConnection(const TcpConnectionPtr& conn);
-    virtual void removeConnectionInLoop(const TcpConnectionPtr& conn);
+    void newConnection(int sockfd, const InetAddress& peerAddr);
+    void removeConnection(const TcpConnectionPtr& conn);
+    void removeConnectionInLoop(const TcpConnectionPtr& conn);
 
 private:
     using ConnectionMap = std::map<std::string, TcpConnectionPtr>;

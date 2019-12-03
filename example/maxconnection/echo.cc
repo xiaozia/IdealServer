@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : echo.cc
-*   Last Modified : 2019-07-12 18:11
+*   Last Modified : 2019-12-01 13:18
 *   Describe      :
 *
 *******************************************************/
@@ -23,8 +23,10 @@ EchoServer::EchoServer(EventLoop* loop,
 	_server(loop, listenAddr, "EchoServer"),
     _numConnected(0),
     _kMaxConnections(maxConnections) {
-  	_server.setConnectionCallback(std::bind(&EchoServer::onConnection, this, _1));
-  	_server.setMessageCallback(std::bind(&EchoServer::onMessage, this, _1, _2, _3));
+  	_server.setConnectionCallback(
+        std::bind(&EchoServer::onConnection, this, std::placeholders::_1));
+  	_server.setMessageCallback(
+        std::bind(&EchoServer::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 }
 
 void EchoServer::start() {

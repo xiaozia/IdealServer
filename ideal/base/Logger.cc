@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Logger.cc
-*   Last Modified : 2019-11-22 20:51
+*   Last Modified : 2019-11-23 14:14
 *   Describe      :
 *
 *******************************************************/
@@ -15,7 +15,7 @@
 #include "ideal/base/Timestamp.h"
 #include "ideal/base/TimeZone.h"
 
-#include <cerrno>
+#include <errno.h>
 
 namespace ideal {
 

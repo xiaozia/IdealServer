@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : HttpServer.cc
-*   Last Modified : 2019-11-21 16:56
+*   Last Modified : 2019-12-01 13:20
 *   Describe      :
 *
 *******************************************************/
@@ -30,8 +30,10 @@ HttpServer::HttpServer(ideal::net::EventLoop* loop,
                        ideal::net::TcpServer::Option option) :
     _server(loop, listenAddr, name, option),
     _httpCallback(defaultHttpCallback) {
-    _server.setConnectionCallback(std::bind(&HttpServer::onConnection, this, ideal::net::_1));
-    _server.setMessageCallback(std::bind(&HttpServer::onMessage, this, ideal::net::_1, ideal::net::_2, ideal::net::_3));
+    _server.setConnectionCallback(
+        std::bind(&HttpServer::onConnection, this, std::placeholders::_1));
+    _server.setMessageCallback(
+        std::bind(&HttpServer::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 }
 
 void HttpServer::start() {

@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpConnection.cc
-*   Last Modified : 2019-11-03 11:06
+*   Last Modified : 2019-12-01 13:12
 *   Describe      :
 *
 *******************************************************/
@@ -48,7 +48,7 @@ TcpConnection::TcpConnection(EventLoop* loop,
     _localAddr(localAddr),
     _peerAddr(peerAddr),
     _highWaterMark(64*1024*1024) {
-    _channel->setReadCallback(std::bind(&TcpConnection::handleRead, this, _1));
+    _channel->setReadCallback(std::bind(&TcpConnection::handleRead, this, std::placeholders::_1));
     _channel->setWriteCallback(std::bind(&TcpConnection::handleWrite, this));
     _channel->setCloseCallback(std::bind(&TcpConnection::handleClose, this));
     _channel->setErrorCallback(std::bind(&TcpConnection::handleError, this));
@@ -62,6 +62,10 @@ TcpConnection::~TcpConnection() {
               << " fd = " << _channel->fd()
               << " state = " << stateToString();
     assert(_state == kDisconnected);
+}
+
+int TcpConnection::getFd() const { 
+    return _channel->fd(); 
 }
 
 void TcpConnection::handleRead(Timestamp receiveTime) {

@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : server_threadpool.cc
-*   Last Modified : 2019-11-23 09:56
+*   Last Modified : 2019-12-01 13:23
 *   Describe      :
 *
 *******************************************************/
@@ -29,9 +29,9 @@ public:
         _server(loop, listenAddr, "SudokuServer"),
         _numThreads(numThreads) {
         _server.setConnectionCallback(
-            std::bind(&SudokuServer::onConnection, this, _1));
+            std::bind(&SudokuServer::onConnection, this, std::placeholders::_1));
         _server.setMessageCallback(
-            std::bind(&SudokuServer::onMessage, this, _1, _2, _3));
+            std::bind(&SudokuServer::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     }
 
     void start() {

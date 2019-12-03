@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Callbacks.h
-*   Last Modified : 2019-06-10 19:16
+*   Last Modified : 2019-12-01 13:09
 *   Describe      :
 *
 *******************************************************/
@@ -19,12 +19,7 @@
 #include <functional>
 
 namespace ideal {
-
 namespace net {
-
-using std::placeholders::_1;
-using std::placeholders::_2;
-using std::placeholders::_3;
 
 using TimerCallback = std::function<void()>;
 
@@ -43,9 +38,7 @@ void defaultConnectionCallback(const TcpConnectionPtr& conn);
 void defaultMessageCallback(const TcpConnectionPtr& conn, Buffer* buffer, Timestamp receiveTime);
 
 }
-
 }
 
 #endif // _IDEAL_NET_CALLBACKS_H
-
 

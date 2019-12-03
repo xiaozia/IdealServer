@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Thread.cc
-*   Last Modified : 2019-05-26 09:33
+*   Last Modified : 2019-11-23 14:13
 *   Describe      :
 *
 *******************************************************/
@@ -15,7 +15,7 @@
 #include "Exception.h"
 
 #include <memory>
-#include <cassert>
+#include <assert.h>
 
 #include <sys/prctl.h>
 

@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : EchoServer_test.cc
-*   Last Modified : 2019-07-08 21:39
+*   Last Modified : 2019-12-01 13:17
 *   Describe      :
 *
 *******************************************************/
@@ -32,8 +32,10 @@ public:
     EchoServer(EventLoop* loop, const InetAddress& listenAddr) :
         _loop(loop),
         _server(loop, listenAddr, "EchoServer") {
-        _server.setConnectionCallback(std::bind(&EchoServer::onConnection, this, _1));
-        _server.setMessageCallback(std::bind(&EchoServer::onMessage, this, _1, _2, _3));
+        _server.setConnectionCallback(
+            std::bind(&EchoServer::onConnection, this, std::placeholders::_1));
+        _server.setMessageCallback(
+            std::bind(&EchoServer::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         _server.setThreadNum(numThreads);
     }
 

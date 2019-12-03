@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : server_basic.cc
-*   Last Modified : 2019-11-21 20:04
+*   Last Modified : 2019-12-01 13:21
 *   Describe      :
 *
 *******************************************************/
@@ -27,9 +27,9 @@ public:
     SudokuServer(EventLoop* loop, const InetAddress& listenAddr) :
         _server(loop, listenAddr, "SudokuServer") {
         _server.setConnectionCallback(
-            std::bind(&SudokuServer::onConnection, this, _1));
+            std::bind(&SudokuServer::onConnection, this, std::placeholders::_1));
         _server.setMessageCallback(
-            std::bind(&SudokuServer::onMessage, this, _1, _2, _3));
+            std::bind(&SudokuServer::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     }
 
     void start() {

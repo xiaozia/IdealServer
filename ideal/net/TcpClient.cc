@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpClient.cc
-*   Last Modified : 2019-07-29 14:36
+*   Last Modified : 2019-12-01 13:25
 *   Describe      :
 *
 *******************************************************/
@@ -43,7 +43,9 @@ TcpClient::TcpClient(EventLoop* loop, const InetAddress& serverAddr, const std::
     _retry(false),
     _connect(true),
     _nextConnId(1) {
-    _connector->setNewConnectionCallback(std::bind(&TcpClient::newConnection, this, _1));
+    _connector->setNewConnectionCallback(
+        std::bind(&TcpClient::newConnection, this, std::placeholders::_1));
+    
     LOG_INFO << "TcpClient::TcpClient[" << _name
              << "] - connector " << _connector.get();
 }
@@ -61,7 +63,7 @@ TcpClient::~TcpClient() {
     }
     if(conn) {
         assert(_loop == conn->getLoop());
-        CloseCallback cb = std::bind(&ideal::net::removeConnection, _loop, _1);
+        CloseCallback cb = std::bind(&ideal::net::removeConnection, _loop, std::placeholders::_1);
         _loop->runInLoop(std::bind(&TcpConnection::setCloseCallback, conn, cb));
         if(unique) {
             conn->forceClose();
@@ -113,7 +115,7 @@ void TcpClient::newConnection(int sockfd) {
     conn->setConnectionCallback(_connectionCallback);
     conn->setMessageCallback(_messageCallback);
     conn->setWriteCompleteCallback(_writeCompleteCallback);
-    conn->setCloseCallback(std::bind(&TcpClient::removeConnection, this, _1));
+    conn->setCloseCallback(std::bind(&TcpClient::removeConnection, this, std::placeholders::_1));
     {
         std::lock_guard<std::mutex> lg(_mtx);
         _connection = conn;

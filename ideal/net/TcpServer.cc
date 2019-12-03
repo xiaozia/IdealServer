@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : TcpServer.cc
-*   Last Modified : 2019-07-08 20:27
+*   Last Modified : 2019-12-01 13:11
 *   Describe      :
 *
 *******************************************************/
@@ -37,7 +37,7 @@ TcpServer::TcpServer(EventLoop* loop,
     _nextConnId(1) {
     LOG_TRACE << "TcpServer::TcpServer [" << _name << "] constructing";
     _acceptor->setNewConnectionCallback(
-            std::bind(&TcpServer::newConnection, this, _1, _2));
+            std::bind(&TcpServer::newConnection, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 TcpServer::~TcpServer() {
@@ -90,7 +90,7 @@ void TcpServer::newConnection(int sockfd, const InetAddress& peerAddr) {
     conn->setConnectionCallback(_connectionCallback);
     conn->setMessageCallback(_messageCallback);
     conn->setWriteCompleteCallback(_writeCompleteCallback);
-    conn->setCloseCallback(std::bind(&TcpServer::removeConnection, this, _1));
+    conn->setCloseCallback(std::bind(&TcpServer::removeConnection, this, std::placeholders::_1));
     ioLoop->runInLoop(std::bind(&TcpConnection::connectEstablished, conn));
 }
 

@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : RingBuffer.h
-*   Last Modified : 2019-10-19 14:59
+*   Last Modified : 2019-11-23 15:23
 *   Describe      :
 *
 *******************************************************/
@@ -23,7 +23,7 @@ namespace ideal {
 template <typename T>
 class RingBuffer {
 public:
-    RingBuffer(int capacity) :
+    RingBuffer(int capacity = 60) :
         _buffer(capacity),
         _numDatas(0),
         _capacity(capacity),

@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : InetAddress.cc
-*   Last Modified : 2019-11-05 20:31
+*   Last Modified : 2019-11-23 15:16
 *   Describe      :
 *
 *******************************************************/
@@ -16,7 +16,12 @@
 #include "ideal/net/SocketUtil.h"
 
 #include <assert.h>
+
+#include <unistd.h>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
 #include <netdb.h>
+#include <net/if.h>
 
 using namespace ideal;
 using namespace ideal::net;
@@ -87,5 +92,35 @@ bool InetAddress::resolve(StringArg hostname, InetAddress* result) {
         }
         return false;
     }
+}
+
+std::string InetAddress::getLocalIpAddress() {
+    int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sockfd == -1) {
+        close(sockfd);
+        return "0.0.0.0";
+    }
+ 	
+	struct ifconf ifconf;
+	char buf[512] = { 0 };
+    ifconf.ifc_len = sizeof buf;
+    ifconf.ifc_buf = buf;
+    if(ioctl(sockfd, SIOCGIFCONF, &ifconf) == -1) {
+        close(sockfd);
+        return "0.0.0.0";
+    }
+
+    close(sockfd);
+
+    struct ifreq* ifreq = ifconf.ifc_req;
+    for(int i = (ifconf.ifc_len / sizeof(struct ifreq)); i > 0; --i) {
+        if (ifreq->ifr_flags == AF_INET) {
+            if(strcmp(ifreq->ifr_name, "lo") != 0) {
+                return inet_ntoa(((struct sockaddr_in*)&(ifreq->ifr_addr))->sin_addr); // 取第一个
+            }
+            ifreq++;
+        }
+    }
+    return "0.0.0.0";
 }
 

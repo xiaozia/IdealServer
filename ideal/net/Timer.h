@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Timer.h
-*   Last Modified : 2019-06-10 19:41
+*   Last Modified : 2019-11-23 14:11
 *   Describe      :
 *
 *******************************************************/
@@ -18,7 +18,7 @@
 #include "ideal/net/Callbacks.h"
 
 #include <atomic>
-#include <cstdint>
+#include <stdint.h>
 
 namespace ideal {
 

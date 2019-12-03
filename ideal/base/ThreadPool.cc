@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : ThreadPool.cc
-*   Last Modified : 2019-06-06 11:29
+*   Last Modified : 2019-11-23 14:14
 *   Describe      :
 *
 *******************************************************/
@@ -13,7 +13,7 @@
 #include "ideal/base/ThreadPool.h"
 #include "ideal/base/Exception.h"
 
-#include <cassert>
+#include <assert.h>
 
 using namespace ideal;
 

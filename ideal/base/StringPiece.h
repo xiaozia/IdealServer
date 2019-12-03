@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : StringPiece.h
-*   Last Modified : 2019-05-26 13:32
+*   Last Modified : 2019-11-23 14:12
 *   Describe      :
 *
 *******************************************************/
@@ -16,7 +16,7 @@
 #include "ideal/base/Copyable.h"
 
 #include <string>
-#include <cstring>
+#include <string.h>
 
 namespace ideal {
 

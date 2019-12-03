@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : loadtest.cc
-*   Last Modified : 2019-11-23 09:40
+*   Last Modified : 2019-12-01 13:22
 *   Describe      :
 *
 *******************************************************/
@@ -57,9 +57,9 @@ public:
         _input(input),
         _count(0) {
         _client.setConnectionCallback(
-                std::bind(&SudokuClient::onConnection, this, _1));
+            std::bind(&SudokuClient::onConnection, this, std::placeholders::_1));
         _client.setMessageCallback(
-                std::bind(&SudokuClient::onMessage, this, _1, _2, _3));
+            std::bind(&SudokuClient::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     }
 
     void connect() {

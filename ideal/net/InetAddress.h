@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : InetAddress.h
-*   Last Modified : 2019-06-03 19:48
+*   Last Modified : 2019-11-23 15:14
 *   Describe      :
 *
 *******************************************************/
@@ -19,7 +19,6 @@
 #include <netinet/in.h>
 
 namespace ideal {
-
 namespace net {
 
 namespace sockets {
@@ -49,12 +48,14 @@ public:
 
     static bool resolve(StringArg hostname, InetAddress* result);
 
+    // MediaSession用到
+    static std::string getLocalIpAddress();
+
 private:
     struct sockaddr_in _addr;
 };
 
 }
-
 }
 
 #endif // _IDEAL_NET_INETADDRESS_H

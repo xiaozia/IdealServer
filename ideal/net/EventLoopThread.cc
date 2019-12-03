@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : EventLoopThread.cc
-*   Last Modified : 2019-07-04 21:52
+*   Last Modified : 2019-11-23 14:11
 *   Describe      :
 *
 *******************************************************/
@@ -13,7 +13,7 @@
 #include <ideal/net/EventLoopThread.h>
 #include <ideal/net/EventLoop.h>
 
-#include <cassert>
+#include <assert.h>
 
 using namespace ideal;
 using namespace ideal::net;

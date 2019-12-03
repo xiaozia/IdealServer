@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : LogStream.h
-*   Last Modified : 2019-05-25 21:18
+*   Last Modified : 2019-11-23 14:15
 *   Describe      :
 *
 *******************************************************/
@@ -17,7 +17,7 @@
 #include "ideal/base/StringPiece.h"
 
 #include <string>
-#include <cstring>
+#include <string.h>
 
 namespace ideal {
 

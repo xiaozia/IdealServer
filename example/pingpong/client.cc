@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : client.cc
-*   Last Modified : 2019-11-17 19:24
+*   Last Modified : 2019-12-01 13:19
 *   Describe      :
 *
 *******************************************************/
@@ -37,9 +37,9 @@ public:
         _bytesRead(0),
         _messagesRead(0) {
         _client.setConnectionCallback(
-                std::bind(&Session::onConnection, this, _1));
+            std::bind(&Session::onConnection, this, std::placeholders::_1));
         _client.setMessageCallback(
-                std::bind(&Session::onMessage, this, _1, _2, _3));
+            std::bind(&Session::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     }
 
     void start() {

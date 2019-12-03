@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : Buffer.h
-*   Last Modified : 2019-06-02 17:23
+*   Last Modified : 2019-11-23 13:42
 *   Describe      :
 *
 *******************************************************/
@@ -63,14 +63,21 @@ public:
 
     const char* findCRLF() const {
         const char* crlf = std::search(peek(), beginWrite(), kCRLF, kCRLF+2);
-        return crlf == beginWrite()? NULL : crlf;
+        return crlf == beginWrite()? nullptr : crlf;
     }
+    // RtspMessage用到
+    const char* findLastCRLF() const {
+        const char* crlf = std::find_end(peek(), beginWrite(), kCRLF, kCRLF+2);
+        return crlf == beginWrite()? nullptr : crlf;
+    }
+
     const char* findCRLF(const char* start) const {
         assert(peek() <= start);
         assert(start <= beginWrite());
         const char* crlf = std::search(start, beginWrite(), kCRLF, kCRLF+2);
-        return crlf == beginWrite()? NULL : crlf;
+        return crlf == beginWrite()? nullptr : crlf;
     }
+
     const char* findEOL() const {
         const void* eol = memchr(peek(), '\n', readableBytes());
         return static_cast<const char*>(eol);

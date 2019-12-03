@@ -5,7 +5,7 @@
 *   Author        : owb
 *   Email         : 2478644416@qq.com
 *   File Name     : EchoClient_test.cc
-*   Last Modified : 2019-11-05 16:05
+*   Last Modified : 2019-12-01 13:17
 *   Describe      :
 *
 *******************************************************/
@@ -38,8 +38,10 @@ public:
 	EchoClient(EventLoop* loop, const InetAddress& listenAddr, const std::string& id) :
 		loop_(loop),
 		client_(loop, listenAddr, "EchoClient"+id) {
-    	client_.setConnectionCallback(std::bind(&EchoClient::onConnection, this, _1));
-    	client_.setMessageCallback(std::bind(&EchoClient::onMessage, this, _1, _2, _3));
+    	client_.setConnectionCallback(
+            std::bind(&EchoClient::onConnection, this, std::placeholders::_1));
+    	client_.setMessageCallback(
+            std::bind(&EchoClient::onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 	}
 
   	void connect() {

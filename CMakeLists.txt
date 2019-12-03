@@ -9,7 +9,7 @@ endif()
 option(BUILD_EXAMPLES "Build Ideal examples" ON)
 
 set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11")
-set(CMAKE_CXX_FLAGS_DEBUG "-O0")
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -DRTSP_DEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -24,6 +24,7 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/ideal/base)
 add_subdirectory(${PROJECT_SOURCE_DIR}/ideal/net)
+add_subdirectory(${PROJECT_SOURCE_DIR}/ideal/media)
 
 if(BUILD_EXAMPLES)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/base)
@@ -33,5 +34,6 @@ if(BUILD_EXAMPLES)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/pingpong)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/http)
     add_subdirectory(${PROJECT_SOURCE_DIR}/example/sudoku)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/example/media)
 endif()
 
